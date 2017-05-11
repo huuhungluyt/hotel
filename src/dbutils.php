@@ -75,6 +75,7 @@ function adminLogin($username, $password){
 	}
 	return $customer;
 }
+
 function loginUser($username, $password){
 	$data= getData("select * from user_acc where username='$username' and password='$password'");
 	$customer= null;

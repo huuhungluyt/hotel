@@ -180,7 +180,16 @@ if(!isset($_SESSION["loginAdmin"])){
 
 <div class= "col-md-8 col-sm-12">
     <div class="panel panel-info">
-        <div class="panel-heading"><h4><span class="glyphicon glyphicon-th-list"></span> Orders information</h4></div>
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-10">
+                    <h4><span class="glyphicon glyphicon-th-list"></span> Orders information</h4>
+                </div>
+                <div class="col-md-2">
+                    <label><input type="checkbox" id="isPaid" value="paid"> Paid</label>
+                </div>
+            </div>
+        </div>
         <div class="panel-body" style="overflow: scroll; max-height: 400px; overflow-x: hidden;">
             <table class="table table-striped table-hover table-bordered" id="orderInfo">
               <thead>
