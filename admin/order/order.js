@@ -2,18 +2,7 @@ $(function () {
     //datepicker
     $("#byBeginTime, #byEndTime").datepicker();
 
-    //     $(".form_datetime").datetimepicker({
-    //     format: "dd MM yyyy - hh:ii",
-    //     autoclose: true,
-    //     todayBtn: true,
-    //     pickerPosition: "bottom-left"
-    // });
-
-    // //Add element to select year of birth
-    // curYear = new Date().getFullYear();
-    // for (i = 60; i > 0; i--) {
-    //     $('<option/>').val(curYear - i).html(curYear - i).appendTo('#byBirthyear');
-    // }
+    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
 
 
     //INFORM ERROR OR SUCCESS
@@ -37,7 +26,7 @@ jQuery.validator.addMethod("rangeOfFee", function (value, element) {
     return true;
 }, "");
 
-loadOrderInfo("", "", "", "", "", "", "", "", "", "")
+loadOrderInfo();
 
     $("#formFindOrder").validate({
         rules: {

@@ -102,16 +102,19 @@ if(!isset($_SESSION["loginAdmin"])){
                             <label for="byBeginTime">Range of time: </label>
                         </div>
                     </div>
-                    <link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
+                    <link rel="stylesheet prefetch" href="../../bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
                     <div class="form-group">
                         <div class="control-label col-sm-4">
                             <p for="byBeginTime">from </p>
                         </div>
                         <div class="col-sm-8">
-                               <div  class="input-group date">
-                                    <input class="form-control" data-date-format="yyyy-mm-dd" readonly type="text" id="byBeginTime" name= 'byBeginTime'>
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> 
-                                </div>      
+                               <div id="datetimepicker1" class="input-append date">
+                                    <input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime">
+                                    <!--<span class="add-on">
+                                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                                    </i>
+                                    </span>-->
+                                </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -206,10 +209,10 @@ if(!isset($_SESSION["loginAdmin"])){
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../../bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 <!--Confirmation js-->
-<script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 <script src="order.js"></script>
 
