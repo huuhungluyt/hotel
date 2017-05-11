@@ -11,7 +11,7 @@ $('.form_datetime').datetimepicker({
         showMeridian: 1
     });
 
-    
+
     $("#inform").hide();
 
 jQuery.validator.addMethod("rangeOfTime", function (value, element) {
@@ -36,6 +36,9 @@ jQuery.validator.addMethod("rangeOfFee", function (value, element) {
 
     $("#formFindOrder").validate({
         rules: {
+            byId:{
+                number: true
+            },
             byBeginTime: {
                 date: true
             },
@@ -52,6 +55,9 @@ jQuery.validator.addMethod("rangeOfFee", function (value, element) {
             }
         },
         messages: {
+            byId:{
+                number: "Order ID must be a number !"
+            },
             byBeginTime: {
                 date: "Invalid date format !"
             },
@@ -78,7 +84,7 @@ function loadOrderInfo(){
     $.post(
         "do_find.php",
         {
-            findBy: $("input[name='findBy']:checked", "form[name='formFindOrder']").val(),
+            findBy: $("input[name='findBy']:checked", "#formFindOrder").val(),
             byId: $("#byId").val(),
             byRoomId: $("#byRoomId").val(),
             byUserId: $("#byUserId").val(),

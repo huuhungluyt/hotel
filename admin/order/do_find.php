@@ -36,6 +36,7 @@ session_start();
             if($byRoomType) $where .= "and room.type='$byRoomType' ";
             if($byOrderType) $where .= "and book.type='$byOrderType' ";
             if($byBeginTime&&$byEndTime) $where .= "and ((book.beginTime<='$byBeginTime' and book.endTime>='$byEndTime')or(book.beginTime>='$byBeginTime'and book.beginTime<='$byEndTime')or(book.endTime>='$byBeginTime'and book.endTime<='$byEndTime')) ";
+            if($byLowFee&&$byHighFee) $where .= "and (fee<=$byHighFee and fee>=$byLowFee) ";
         } 
     }
 
@@ -51,12 +52,10 @@ session_start();
         // $fullName= json_encode($customer->cols["fullName"]);
         // $gender= json_encode($customer->cols["gender"]);
         // $dateOfBirth= json_encode($customer->cols["dateOfBirth"]);
-        // $result .= "<td><button type='button' class='btn btn-success btn-xs' data-toggle='modal' data-target='#updatePopup'
-        // onClick='fillUpdateForm($id, $username, $fullName, $gender, $dateOfBirth)'
-        // ><span class='glyphicon glyphicon-pencil'></span></button></td>";
+        $result .= "<td><button type='button' class='btn btn-success btn-xs ".(($customer->cols['fee'])?"disabled":"")."' data-toggle='modal' data-target='#updatePopup' onClick='fillUpdateForm($id, $username, $fullName, $gender, $dateOfBirth)'><i class='fa fa-dollar' style='font-size:20px;'></i></button></td>";
         // $result .= "<td><button onClick='loadHistory($id)' type='button' class='btn btn-warning btn-xs'
         // ><span class='glyphicon glyphicon-list-alt'></span></button></td>";
-        // $result .= "<td><button onClick='deleteCustomer($id)' class='btn btn-danger btn-xs' data-toggle='confirmation'
+        $result .= "<td><button onClick='deleteCustomer($id)' class='btn btn-danger btn-xs' data-toggle='confirmation'
         // ><span class='glyphicon glyphicon-remove'></span></a></td>";
         $result .= "</tr>";
     }

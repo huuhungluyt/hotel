@@ -108,7 +108,7 @@ if(!isset($_SESSION["loginAdmin"])){
                             <p for="byEndTime">from </p>
                         </div>
                         <div class="col-sm-8">
-                            <div class="input-group date form_datetime" data-date-format="yyyy-mm-dd HH:ii:ss">
+                            <div class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii:ss">
                                 <input id="byBeginTime" class="form-control" type="text" value="" readonly>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                             </div>
@@ -120,7 +120,7 @@ if(!isset($_SESSION["loginAdmin"])){
                             <p for="byEndTime">to </p>
                         </div>
                         <div class="col-sm-8">
-                               <div class="input-group date form_datetime" data-date-format="yyyy-mm-dd HH:ii:ss">
+                               <div class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii:ss">
                                 <input id="byEndTime" class="form-control" type="text" value="" readonly>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                             </div>      
@@ -148,18 +148,16 @@ if(!isset($_SESSION["loginAdmin"])){
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="control-label col-sm-4">
+                        <div class="control-label col-sm-2">
                             <p for="byLowFee">from </p>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-4">
                                     <input class="form-control" type="text" id="byLowFee" name= 'byLowFee'>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="control-label col-sm-4">
+                        <div class="control-label col-sm-2">
                             <p for="byHighFee">to </p>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-4">
                                     <input class="form-control" type="text" id="byHighFee" name= 'byHighFee'>
                         </div>
                     </div>
@@ -178,6 +176,8 @@ if(!isset($_SESSION["loginAdmin"])){
     </div>
 
 <!--ORDERS INFORMATION-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class= "col-md-8 col-sm-12">
     <div class="panel panel-info">
         <div class="panel-heading"><h4><span class="glyphicon glyphicon-th-list"></span> Orders information</h4></div>
