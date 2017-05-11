@@ -1,58 +1,74 @@
-   <?php
-      include("_header.php");
-?>
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-      <!-- START THE FEATURETTES -->
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+<?php include("_header.php");?>
+
+
+    <div class="container">
+  <div class="row">
+
+<div id="inform" class="alert">
+            <strong><span class="glyphicon"></span><span></span></strong><span></span>
         </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <form class="form-signin" id='formRegisAccount' name='formRegisAccount' method='POST' action='do_regisaccount.php'>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Register account</h4>
+                </div>
+                <div class="modal-body">
+                                  <div class="form-group">
+                                        <label for="username">Username:</label>
+                                        <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username">
+                                  </div>
+                                  <div class="form-group">
+                                        <label for="password">Password:</label>
+                                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
+                                  </div>
+                                  <div class="form-group">
+                                        <label for="re_password">Confirm password:</label>
+                                        <input type="password" id="re_password" name="re_password" class="form-control" placeholder="Enter your password again">
+                                  </div>
+                                  <div class="form-group">
+                                        <label for="fullname">Fullname</label>
+                                        <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Enter your fullname">
+                                  </div>
+                                  <div class="form-group">
+                                        <label for="gender">Gender</label>
+                                        <div class="radio">
+                                              <label class="radio-inline"><input type="radio" name="genderradio" value="male">Male</label>
+                                              <label class="radio-inline"><input type="radio" name="genderradio" value="female">Female</label>
+                                              <label class="radio-inline"><input type="radio" name="genderradio" value="other">Other</label>
+                                        </div>
+                                  </div>
+                                  <div class="form-group">
+                                        <label for="dateOfBỉrth">Date Of Birth</label>
+                                              <link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
+                                              <div  class="input-group date">
+                                                    <input class="form-control" data-date-format="yyyy-mm-dd" readonly type="text" id="dateOfBirth" name= 'dateOfBirth'>
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> 
+                                              </div>      
+                                  </div>
+                                    
+                                  
+                </div>
+                <div class="modal-footer">
+                  <div class="form-group pull-right">
+                                        <button type="submit" id="submit" class="btn btn-primary btn-md">Submit</button>
+                                  </div>
+                </div>
+      </form>
+            </div>
         </div>
-      </div>
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-      <hr class="featurette-divider">
-      <!-- /END THE FEATURETTES -->
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="js/regis_form.js"></script>
+
 <?php include("_footer.php")?>
+
