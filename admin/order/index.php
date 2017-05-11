@@ -102,30 +102,28 @@ if(!isset($_SESSION["loginAdmin"])){
                             <label for="byBeginTime">Range of time: </label>
                         </div>
                     </div>
-                    <link rel="stylesheet prefetch" href="../../bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+                    <link href="../../bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
                     <div class="form-group">
                         <div class="control-label col-sm-4">
-                            <p for="byBeginTime">from </p>
+                            <p for="byEndTime">from </p>
                         </div>
                         <div class="col-sm-8">
-                               <div id="datetimepicker1" class="input-append date">
-                                    <input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime">
-                                    <!--<span class="add-on">
-                                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                                    </i>
-                                    </span>-->
-                                </div>
+                            <div class="input-group date form_datetime" data-date-format="yyyy-mm-dd HH:ii:ss">
+                                <input id="byBeginTime" class="form-control" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
                         </div>
+                        <!--<input type="hidden" id="dtp_input1" value="" /><br/>-->
                     </div>
                     <div class="form-group">
                         <div class="control-label col-sm-4">
                             <p for="byEndTime">to </p>
                         </div>
                         <div class="col-sm-8">
-                               <div  class="input-group date">
-                                    <input class="form-control" data-date-format="yyyy-mm-dd hh:ii:ss" readonly type="text" id="byEndTime" name= 'byEndTime'>
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> 
-                                </div>      
+                               <div class="input-group date form_datetime" data-date-format="yyyy-mm-dd HH:ii:ss">
+                                <input id="byEndTime" class="form-control" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>      
                         </div>
                     </div>
                     <div class="form-group">
@@ -209,9 +207,11 @@ if(!isset($_SESSION["loginAdmin"])){
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="../../bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+
+<script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 <!--Confirmation js-->
 
 <script src="order.js"></script>

@@ -1,11 +1,17 @@
 $(function () {
-    //datepicker
-    $("#byBeginTime, #byEndTime").datepicker();
 
-    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+$('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
 
-
-    //INFORM ERROR OR SUCCESS
+    
     $("#inform").hide();
 
 jQuery.validator.addMethod("rangeOfTime", function (value, element) {
@@ -26,7 +32,7 @@ jQuery.validator.addMethod("rangeOfFee", function (value, element) {
     return true;
 }, "");
 
-loadOrderInfo();
+    loadOrderInfo()
 
     $("#formFindOrder").validate({
         rules: {
