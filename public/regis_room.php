@@ -1,4 +1,19 @@
-<?php include("_header.php");?>
+<?php include("_header.php");
+    require_once "../src/dbutils.php";
+
+   if(!isset($_SESSION["loginUser"])){
+       header("Location:index.php");
+       exit();
+   }
+
+   
+?>
+<script>
+    document.getElementById("url_home").classList.remove("active");
+    document.getElementById("url_about").classList.remove("active");
+    document.getElementById("url_contact").classList.remove("active");
+    document.getElementById("url_book").classList.add("active");
+</script>
 <div class="row">
     <div class="col-md-4">
         <div class="panel panel-success">
@@ -6,7 +21,7 @@
             <h2>Search empty room</h2>
         </div>
             <div class="panel-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" name="formSearch" id="formSearch" method="POST">
                     <div class="form-group">
                         <label class="col-sm-5" for="start_time">Start time:</label>
                         <link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
@@ -24,30 +39,33 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-5" for="type-room">Type of room:</label>
+                        <label class="col-sm-5" for="type_room">Type of room:</label>
                         <div class="col-sm-7">
-                            <select class="form-control" id="type-room">
-                                <option>Single - Vip</option>
-                                <option>Double - Vip</option>
-                                <option>Single</option>
-                                <option>Double</option>
+                            <select class="form-control" id="type_room" name="type_room">
+                            <option value="">--All--</option>
+                            <?php 
+                                $temp = getData("select type from room_type");
+                                foreach($temp as $obj){
+                                    echo "<option value='".htmlspecialchars($obj->cols['type'])."'>".htmlspecialchars($obj->cols['type'])."</option>";
+                                }
+                            ?>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-5" for="id-room">ID Room:</label>
+                        <label class="col-sm-5" for="id_room">ID Room:</label>
                         <div class="col-sm-7">
-                            <input type="text" id="id-room" class="form-control" placeholder="01001">
+                            <input type="text" id="id_room" name="id_room" class="form-control" placeholder="0101">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-5" for="floor">Floor:</label>
                         <div class="col-sm-7">
-                            <input type="text" id="floor" class="form-control" placeholder="01">
+                            <input type="text" id="floor" name="floor" class="form-control" placeholder="01">
                         </div>
                     </div>
                     <div class="form-group col-sm-8 pull-right">
-                        <button type="button" id="submit" class="btn btn-primary btn-md">Search</button>
+                        <button type="submit" id="submit" class="btn btn-primary btn-md">Search</button>
                     </div>
                 </form>
             </div>
@@ -74,33 +92,71 @@
                     <tbody>
                         <tr>
                             <td><input type="checkbox" id="choose"></td>
-                            <td>01001</td>
+                            <td>0101</td>
                             <td>Double</td>
-                            <td>100000</td>
+                            <td>
+                            <select class="form-control">
+                            <?php 
+                                $tmp = getData("select 2h_price '2h', 24h_price '24h', overnight_price 'overnight' from room_type where type='double'");
+                                foreach($tmp as $obj2){
+                                    foreach($obj2->cols as $k=>$v){
+                                        echo "<option value='".htmlspecialchars($k)."'>".htmlspecialchars($k.": ".$v)."</option>";
+
+                                    }
+                                }
+
+                            ?>
+<!--
+                                <option valuegroup="">2h_price</option>
+                                <option valuegroup="">overnight_price</option>
+                                <option valuegroup="">24h_price</option>
+                                <option valuegroup="">unit_price</option>-->
+                            </select>
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="choose"></td>
                             <td>01004</td>
                             <td>Single-Vip</td>
-                            <td>100000</td>
+                            <td><select class="form-control">
+                                <option valuegroup="">2h_price</option>
+                                <option valuegroup="">overnight_price</option>
+                                <option valuegroup="">24h_price</option>
+                                <option valuegroup="">unit_price</option>
+                            </select></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="choose"></td>
                             <td>02001</td>
                             <td>Double-Vip</td>
-                            <td>100000</td>
+                            <td><select class="form-control" >
+                                <option valuegroup="">2h_price</option>
+                                <option valuegroup="">overnight_price</option>
+                                <option valuegroup="">24h_price</option>
+                                <option valuegroup="">unit_price</option>
+                            </select></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="choose"></td>
                             <td>03004</td>
                             <td>Single-Vip</td>
-                            <td>100000</td>
+                            <td><select class="form-control">
+                                <option valuegroup="">2h_price</option>
+                                <option valuegroup="">overnight_price</option>
+                                <option valuegroup="">24h_price</option>
+                                <option valuegroup="">unit_price</option>
+                            </select></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" id="choose"></td>
                             <td>05005</td>
                             <td>Single</td>
-                            <td>100000</td>
+                            <td><select class="form-control">
+                                <option valuegroup="">2h_price</option>
+                                <option valuegroup="">overnight_price</option>
+                                <option valuegroup="">24h_price</option>
+                                <option valuegroup="">unit_price</option>
+                            </select></td>
                         </tr>
                     </tbody>
                 </table>

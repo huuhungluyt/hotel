@@ -2,11 +2,11 @@
 require_once "Mail.php";
 //lamp/php/etc/php.ini
 //[mail function]
-$email = $_POST['email'];
+$email = $_POST["email"];
 $from = '<huuhung.luyt@gmail.com>';
 $to = '<huuhung.luyt@gmail.com>';
-$subject = $_POST['subject'];
-$body = $_POST['message'];
+$subject = $_POST["subject"];
+$body = $_POST["message"];
 
 $headers = array(
     'From' => $from,
@@ -26,8 +26,10 @@ $smtp = Mail::factory('smtp', array(
 $mail = $smtp->send($to, $headers, $message);
 
 if (PEAR::isError($mail)) {
-    echo('<p>' . $mail->getMessage() . '</p>');
+    echo "ERROR:Update failed";
+    exit();
 } else {
-    echo('<p>Message successfully sent!</p>');
+    echo "SUCCESS:Update successful:";
+        exit();
 }
 ?>

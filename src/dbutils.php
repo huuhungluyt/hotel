@@ -12,8 +12,9 @@ function connectMySql(){
 	$username = 
 	// "u324139567_root";
 	"root";
-	$password = 
+	$password =
 	"";
+	// "hanh_chu";
 	// "huuhung_luyt";
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
@@ -68,6 +69,14 @@ function executeStatement($sqlStr){
 
 function adminLogin($username, $password){
 	$data= getData("select * from admin where username='$username' and password='$password'");
+	$customer= null;
+	foreach($data as $obj){
+		$customer= $obj;
+	}
+	return $customer;
+}
+function loginUser($username, $password){
+	$data= getData("select * from user_acc where username='$username' and password='$password'");
 	$customer= null;
 	foreach($data as $obj){
 		$customer= $obj;

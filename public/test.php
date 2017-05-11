@@ -1,7 +1,7 @@
 <?php
 echo "done";
 require_once "../src/dbutils.php";
-$temp = getData("select * from user_acc where fullname='Nguyen Thi Hanh'");
+$temp = getData("select 2h_price, overnight_price,24h_price,unit_price from INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'cn_web' and TABLE_NAME = 'room_type'");
 $content="";
 foreach($temp as $obj){
     $content .= "<tr>";
