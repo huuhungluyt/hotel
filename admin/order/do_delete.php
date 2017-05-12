@@ -9,7 +9,7 @@
 
     $id= $_POST["id"];
 
-    $check = getData("select user_id from book where state<>'checked out' and user_id='$id'");
+    $check = getData("select user_id from book where NOW()<=endTime and user_id='$id'");
     if($check->rowCount()){
         echo "ERROR:This user is using or booked room, so can not delete";
         exit();

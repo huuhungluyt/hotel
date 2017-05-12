@@ -182,11 +182,26 @@ if(!isset($_SESSION["loginAdmin"])){
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <h4><span class="glyphicon glyphicon-th-list"></span> Orders information</h4>
                 </div>
-                <div class="col-md-2">
-                    <label><input type="checkbox" id="isPaid" value="paid"> Paid</label>
+                <div class="col-md-4" style="">
+                    <div class="form-group">
+                        <div class="control-label col-sm-4" style="margin-top: 10px;">
+                            <label for="byOrderState">State: </label>
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="byOrderState" name="byOrderState">
+                                <option value="">-- All --</option>
+                                <?php
+                                    $temp= getData("select distinct state from book");
+                                    foreach($temp as $obj){
+                                        echo "<option value='".$obj->cols["state"]."'>".$obj->cols["state"]."</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -198,6 +213,7 @@ if(!isset($_SESSION["loginAdmin"])){
                   <th>User ID</th>
                   <th>Room ID</th>
                   <th>Room type</th>
+                  <th>Book time</th>
                   <th>Begin time</th>
                   <th>End time</th>
                   <th>Order type</th>

@@ -18,11 +18,11 @@
     $byType= $_POST["byType"];
     $byState= $_POST["byState"];
 
-    $sqlStr="   select room.id id, room.type type, user_id, beginTime, endTime
+    $sqlStr="   select room.id id, room.type type, user_id, beginTime
                 from
                     room
                     left join
-                    (select * from book where NOW()<=endTime) book
+                    (select * from book where state<>'checked out') book
                     on
                     room.id=room_id ";
     $where= "where 1=1 ";
@@ -32,9 +32,9 @@
         if($findBy=="byOther"){
             if($byFloor) $where .= "and SUBSTR(room.id,1,2)='$byFloor' ";
             if($byType) $where .= "and room.type='$byType' ";
-            if($byState=="vacant") $where .= "and room.id not in (select room_id from book where NOW()<=endTime)";
-            if($byState=="booked") $where .= "and room.id in (select room_id from book where NOW()<beginTime)";
-            if($byState=="using") $where .= "and room.id in (select room_id from book where NOW()>=beginTime and NOW()<=endTime)";
+            if($byState=="vacant") $where .= "and room.id not in (select room_id from book where state<>'checked out')";
+            if($byState=="booked") $where .= "and room.id in (select room_id from book where state='booked')";
+            if($byState=="using") $where .= "and room.id in (select room_id from book where state='checked in')";
         }
     }
 

@@ -131,7 +131,6 @@ if(!isset($_SESSION["loginAdmin"])){
                   <th>Type</th>
                   <th>Customer ID</th>
                   <th>Begin time</th>
-                  <th>End time</th>
                 </tr>
               </thead>
               <tbody>

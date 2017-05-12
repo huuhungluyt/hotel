@@ -22,11 +22,11 @@ session_start();
     $byOrderType= $_POST["byOrderType"];
     $byLowFee= $_POST["byLowFee"];
     $byHighFee= $_POST["byHighFee"];
-
+    $byOrderState= $_POST["byOrderState"];
 
     //By others
 
-    $sqlStr="select book.id orderId, book.user_id userId, room.id roomId, room.type roomType, book.beginTime, book.endTime, book.type orderType, book.fee from book join room on book.room_id=room.id ";
+    $sqlStr="select book.id orderId, book.user_id userId, room.id roomId, room.type roomType,book.bookTime, book.beginTime, book.endTime, book.type orderType, book.fee, book.state from book join room on book.room_id=room.id ";
     $where= "where 1=1 ";
     if($findBy){
         if($findBy=="byId"&&$byId) $where .= "and book.id=$byId ";
@@ -39,24 +39,28 @@ session_start();
             if($byLowFee&&$byHighFee) $where .= "and (fee<=$byHighFee and fee>=$byLowFee) ";
         } 
     }
+    if($byOrderState&&($findBy!="byId"||!$byId)) $where .= "and state ='$byOrderState' ";
 
     $dataTable= getData($sqlStr.$where);
     $result="";
-    foreach($dataTable as $customer) {
+    foreach($dataTable as $order) {
         $result .= "<tr>";
-        foreach($customer->cols as $key=>$value){
+        foreach($order->cols as $key=>$value){
+            if($key!="state"){
                 $result .= "<td>".htmlspecialchars($value, ENT_QUOTES)."</td>";
+            }else{
+                if($value=="booked"){
+                    $result .= "<td><button type='button' class='btn btn-success btn-xs' data-toggle='modal' data-target='#updatePopup' onClick=''><span class='glyphicon glyphicon-log-in'></span></button></td>";
+                }elseif($value=="checked in"){
+                    $result .= "<td><button type='button' class='btn btn-info btn-xs' data-toggle='modal' data-target='#updatePopup' onClick=''><span class='glyphicon glyphicon-time'></span></button></td>";
+                }else{
+                    $result .= "<td><button disabled type='button' class='btn btn-info btn-xs' data-toggle='modal' data-target='#updatePopup' onClick=''><span class='glyphicon glyphicon-log-out'></span></button></td>";
+                }
+
+                    $result .= "<td><button ".(($value=="booked")?"":"disabled")." type='button' class='btn btn-warning btn-xs' data-toggle='modal' data-target='#updatePopup' onClick=''><span class='glyphicon glyphicon-refresh'></span></button></td>";
+            }
         }
-        // $id= $customer->cols["id"];
-        // $username= json_encode($customer->cols["username"]);
-        // $fullName= json_encode($customer->cols["fullName"]);
-        // $gender= json_encode($customer->cols["gender"]);
-        // $dateOfBirth= json_encode($customer->cols["dateOfBirth"]);
-        $result .= "<td><button type='button' class='btn btn-success btn-xs ".(($customer->cols['fee'])?"disabled":"")."' data-toggle='modal' data-target='#updatePopup' onClick='fillUpdateForm($id, $username, $fullName, $gender, $dateOfBirth)'><i class='fa fa-dollar' style='font-size:20px;'></i></button></td>";
-        // $result .= "<td><button onClick='loadHistory($id)' type='button' class='btn btn-warning btn-xs'
-        // ><span class='glyphicon glyphicon-list-alt'></span></button></td>";
-        $result .= "<td><button onClick='deleteCustomer($id)' class='btn btn-danger btn-xs' data-toggle='confirmation'
-        // ><span class='glyphicon glyphicon-remove'></span></a></td>";
+        $result .= "<td><button onClick='deleteCustomer($id)' class='btn btn-danger btn-xs' data-toggle='confirmation'><span class='glyphicon glyphicon-remove'></span></a></td>";
         $result .= "</tr>";
     }
 

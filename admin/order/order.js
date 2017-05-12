@@ -93,7 +93,8 @@ function loadOrderInfo(){
             byEndTime: $("#byEndTime").val(),
             byOrderType: $("#byOrderType").val(),
             byLowFee: $("#byLowFee").val(),
-            byHighFee: $("#byHighFee").val()
+            byHighFee: $("#byHighFee").val(),
+            byOrderState: $("#byOrderState").val()
         },
         function(data, status){
             $("#orderInfo> tbody").html(data);
