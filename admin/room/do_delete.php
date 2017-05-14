@@ -15,8 +15,8 @@
         exit();
     }
 
-    executeStatement("delete from book where room_id=$id");
-    if(executeStatement("delete from room where id=$id")){
+    executeStatement("delete from book where room_id='$id'");
+    if(executeStatement("delete from room where id='$id'")){
         echo "SUCCESS:Room $id was deleted";
         exit();
     }

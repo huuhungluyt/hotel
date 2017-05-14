@@ -9,7 +9,7 @@
 
     $id= $_POST["id"];
 
-    $dataTable= getData("select user_id, beginTime, endTime, book.type, fee from user_acc, book where user_id=user_acc.id and room_id=$id");
+    $dataTable= getData("select user_id, beginTime, endTime, book.type, fee from user_acc, book where user_id=user_acc.id and room_id='$id'");
 
     foreach($dataTable as $row) {
         $result .= "<tr>";

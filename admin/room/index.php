@@ -12,9 +12,10 @@ if(!isset($_SESSION["loginAdmin"])){
 ?>
 
 <script>
-    document.getElementById("url_rooms").classList.add("active");
-    document.getElementById("url_customers").classList.remove("active");
-    document.getElementById("url_books").classList.remove("active");
+    document.getElementById("url_room").classList.add("active");
+    document.getElementById("url_room_type").classList.remove("active");
+    document.getElementById("url_customer").classList.remove("active");
+    document.getElementById("url_order").classList.remove("active");
 </script>
 
 <div class="container">

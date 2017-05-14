@@ -45,10 +45,10 @@
         foreach($room->cols as $key=>$value){
             if($key=="type"){
                 $temp="";
-                $data= getData("select 2h_price '2 hours', overnight_price 'Overnight', 24h_price '24 hours', unit_price 'Unit' from room_type where type='$value'");
+                $data= getData("select maxPeople 'Max number of people', numOfBeds 'Number of beds', food 'Food', hourPrice 'Hour price', dayPrice 'Day price', price 'Unit price' from room_type where type='$value'");
                 foreach($data as $obj){
                     foreach($obj->cols as $k=>$v){
-                        $temp .= "<li style='padding:10px;'>".$k.": <strong>".htmlspecialchars($v)." $</strong></li>";
+                        $temp .= "<li style='padding:10px;'>".$k.": <strong>".htmlspecialchars($v)."</strong></li>";
                     }
                 }
 
