@@ -82,12 +82,9 @@
             $hours= floor($diff/ (60*60));
 
             //get money
-            $money= $hourPrice + ($hours>1)?(($hours-1)*$unitPrice):0;
+            $money= $hourPrice + (($hours>1)?(($hours-1)*$unitPrice):0);
 
             echo $roomId.",".$roomType.",".$beginTime.",".$now.",".$orderType.",".$hourPrice.",".$dayPrice.",".$unitPrice.",".$money.",".$hours.",";
         }
     }
-
-
-    
 ?>
