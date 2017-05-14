@@ -6,7 +6,6 @@
         header("Location: ../log/login.php?errorStr=Please log in");
         exit();
     }
-
     $id= $_POST["id"];
 
     $dataTable= getData("select user_id, beginTime, endTime, book.type, fee from user_acc, book where user_id=user_acc.id and room_id=$id");

@@ -28,6 +28,7 @@ $(function(){
                 message: "Please enter your message"
             },
             submitHandler: function(form){
+                 if (!confirm("Are you sure send your idea ?")) return
                 $.post(
                     "do_contact.php",
                     {

@@ -20,16 +20,17 @@ $smtp = Mail::factory('smtp', array(
         'port' => '465',
         'auth' => true,
         'username' => 'huuhung.luyt@gmail.com',
-        'password' => 'whitehat.luyt'
+        'password' => 'whitehat_luyt'
     ));
 
 $mail = $smtp->send($to, $headers, $message);
 
 if (PEAR::isError($mail)) {
-    echo "ERROR:Update failed";
+    echo "ERROR:Send failed";
+    echo("<p>" . $mail->getMessage() . "</p>");
     exit();
 } else {
-    echo "SUCCESS:Update successful:";
+    echo "SUCCESS:Send successful:";
         exit();
 }
 ?>

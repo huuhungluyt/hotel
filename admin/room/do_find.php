@@ -51,7 +51,6 @@
                         $temp .= "<li style='padding:10px;'>".$k.": <strong>".htmlspecialchars($v)." $</strong></li>";
                     }
                 }
-
                 $result .= "<td><div class='dropdown'>
                     <button class='btn btn-default btn-sm dropdown-toggle' type='button' data-toggle='dropdown'>$value
                     <span class='caret'></span></button>

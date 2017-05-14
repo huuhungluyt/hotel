@@ -9,11 +9,16 @@
     $gender = $_POST["regis_gender"];
     $dateOfBirth = $_POST["regis_dateOfBirth"];
 
+    if(usernameIsExist($id, $username)){
+        echo "ERROR:$username already exist";
+        exit();
+    }
+
     if(executeStatement("insert into user_acc values ('0','$username','$password', '$fullname', '$gender', '$dateOfBirth')")){
-        header('Location:index.php');
+        echo "SUCCESS:Register successfully!";
         exit();
     } else {
-        echo "FAIL";
+        echo "ERROR: Register fail!";
         exit();
     }
 

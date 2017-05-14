@@ -45,6 +45,7 @@ $(function () {
                     up_genderradio: "Please choose your gender",
                 },
                 submitHandler: function(form) {
+                    if (!confirm("Do you want to update this customer ?")) return
                     $.post(
                         "do_updateCustomer.php",
                         {

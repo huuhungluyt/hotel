@@ -18,6 +18,11 @@
     $obj->__set("gender",$gender);
     $obj->__set("dateOfBirth",$dateOfBirth);
     $_SESSION['loginUser'] = $obj;
+
+    if(usernameIsExist($id, $username)){
+        echo "ERROR:$username already exist";
+        exit();
+    }
     // header('Location:index.php');
      if(executeStatement("update user_acc set username='$username',password='$password', fullName='$fullname', gender='$gender', dateOfBirth='$dateOfBirth' where id=$id")){
         echo "SUCCESS:Update successful:".htmlspecialchars($obj->cols["fullName"]);
