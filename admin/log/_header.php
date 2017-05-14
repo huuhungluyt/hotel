@@ -42,9 +42,10 @@
               $loginAdmin= $_SESSION["loginAdmin"];
               $adminFullName= htmlspecialchars($loginAdmin->cols["fullName"]);
                 echo "<ul class='nav navbar-nav'>
-                <li class='active' id='url_rooms'><a href='../room'>Rooms</a></li>
-                <li id='url_customers'><a href='../customer'>Customers</a></li>
-                <li id='url_books'><a href='../order'>Orders</a></li>
+                <li class='active' id='url_room'><a href='../room'>Room</a></li>
+                <li class='active' id='url_room_type'><a href='../room_type'>Type of room</a></li>
+                <li id='url_customer'><a href='../customer'>Customer</a></li>
+                <li id='url_order'><a href='../order'>Order</a></li>
               </ul>
 
             <form class='navbar-form navbar-right'>

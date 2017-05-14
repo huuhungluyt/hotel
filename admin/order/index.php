@@ -12,9 +12,10 @@ if(!isset($_SESSION["loginAdmin"])){
 ?>
 
 <script>
-    document.getElementById("url_customers").classList.remove("active");
-    document.getElementById("url_rooms").classList.remove("active");
-    document.getElementById("url_books").classList.add("active");
+    document.getElementById("url_customer").classList.remove("active");
+    document.getElementById("url_room").classList.remove("active");
+    document.getElementById("url_room_type").classList.remove("active");
+    document.getElementById("url_order").classList.add("active");
 </script>
 
 <div class="container">
@@ -97,33 +98,40 @@ if(!isset($_SESSION["loginAdmin"])){
                             </select>
                         </div>
                     </div>
+                    <link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
                     <div class="form-group">
                         <div class="control-label col-sm-4">
-                            <label for="byBeginTime">Range of time: </label>
-                        </div>
-                    </div>
-                    <link href="../../bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-                    <div class="form-group">
-                        <div class="control-label col-sm-4">
-                            <p for="byEndTime">from </p>
+                            <label for="byBookDate">Booked date: </label>
                         </div>
                         <div class="col-sm-8">
-                            <div class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii:ss">
-                                <input id="byBeginTime" class="form-control" type="text" value="" readonly>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                            </div>
+                            <div  class="input-group date datepicker" data-date-format="yyyy-mm-dd">
+                              <input class="form-control" readonly type="text" id="byBookDate" name= 'byBookDate'>
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> 
+                           </div>
                         </div>
                         <!--<input type="hidden" id="dtp_input1" value="" /><br/>-->
                     </div>
                     <div class="form-group">
                         <div class="control-label col-sm-4">
-                            <p for="byEndTime">to </p>
+                            <label for="byBeginDate">Begin date: </label>
                         </div>
                         <div class="col-sm-8">
-                               <div class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii:ss">
-                                <input id="byEndTime" class="form-control" type="text" value="" readonly>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                            </div>      
+                            <div  class="input-group date datepicker" data-date-format="yyyy-mm-dd">
+                              <input class="form-control" readonly type="text" id="byBeginDate" name= 'byBeginDate'>
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> 
+                           </div>
+                        </div>
+                        <!--<input type="hidden" id="dtp_input1" value="" /><br/>-->
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-sm-4">
+                            <label for="byEndDate">End date: </label>
+                        </div>
+                        <div class="col-sm-8">
+                               <div  class="input-group date datepicker" data-date-format="yyyy-mm-dd">
+                              <input class="form-control" readonly type="text" id="byEndDate" name= 'byEndDate'>
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> 
+                           </div>    
                         </div>
                     </div>
                     <div class="form-group">
@@ -205,7 +213,7 @@ if(!isset($_SESSION["loginAdmin"])){
                 </div>
             </div>
         </div>
-        <div class="panel-body" style="overflow: scroll; max-height: 400px; overflow-x: hidden;">
+        <div class="panel-body" style="overflow: scroll; max-height: 400px;">
             <table class="table table-striped table-hover table-bordered" id="orderInfo">
               <thead>
                 <tr>
@@ -217,7 +225,7 @@ if(!isset($_SESSION["loginAdmin"])){
                   <th>Begin time</th>
                   <th>End time</th>
                   <th>Order type</th>
-                  <th>Fee</th>
+                  <th>Fee ($)</th>
                 </tr>
               </thead>
               <tbody>
@@ -227,17 +235,52 @@ if(!isset($_SESSION["loginAdmin"])){
     </div>
 </div>
 
+<!--BILL POPUP-->
+<div class="modal fade" id="billPopup" role="dialog">
+    <div class="modal-dialog" style="width:400px;">
+    <!-- Modal content-->
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Bill</h4>
+        </div>
+
+        <div class="modal-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr><th>Room ID: </th><td id="roomId"></td></tr>
+                    <tr><th>Room type: </th><td id="roomType"></td></tr>
+                    <tr><th>Begin time: </th><td id="beginTime"></td></tr>
+                    <tr><th>End time: </th><td id="endTime"></td></tr>
+                    <tr><th>Order type: </th><td id="orderType"></td></tr>
+                    <tr><th>Hour price: </th><td id="hourPrice"></td></tr>
+                    <tr><th>Day price: </th><td id="dayPrice"></td></tr>
+                    <tr><th>Unit price: </th><td id="unitPrice"></td></tr>
+
+                    <tr><th>Number of days: </th><td id="days"></td></tr>
+                    <tr><th>Number of hours: </th><td id="hours"></td></tr>
+
+                    <tr><th>Fee: </th><td id="fee"></td></tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>
+
+
 </div>
 </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
-
-<script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="../../bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 <!--Confirmation js-->
+<script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 <script src="order.js"></script>
 

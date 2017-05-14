@@ -21,6 +21,6 @@
         echo "SUCCESS:Room $id is updated";
         exit();
     }else{
-        echo "ERROR:Room $is update failed";
+        echo "ERROR:Room $id update failed";
     }
 ?>

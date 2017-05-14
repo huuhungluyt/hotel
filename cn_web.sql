@@ -54,7 +54,7 @@ CREATE TABLE `book` (
   `bookTime` datetime NOT NULL,
   `beginTime` datetime NOT NULL,
   `endTime` datetime DEFAULT NULL,
-  `type` enum('2h','overnight','24h') DEFAULT '2h',
+  `type` enum('hour','day') NOT NULL,
   `fee` int(11) DEFAULT NULL,
   `state` enum('booked','checked in','checked out') DEFAULT 'booked',
   PRIMARY KEY (`id`),
@@ -62,7 +62,7 @@ CREATE TABLE `book` (
   KEY `room_id` (`room_id`),
   CONSTRAINT `book_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_acc` (`id`),
   CONSTRAINT `book_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
-INSERT INTO `book` VALUES (16,4,'0201','2017-05-10 07:00:00','2017-05-12 07:00:00',NULL,'24h',NULL,'checked in'),(17,5,'0303','2017-05-10 07:00:00','2017-05-12 07:00:00',NULL,'24h',NULL,'booked'),(18,5,'0204','2017-05-10 07:00:00','2017-05-08 07:00:00','2017-05-10 05:00:00','24h',1000,'checked out'),(19,5,'0206','2017-05-10 07:00:00','2017-05-08 07:00:00',NULL,'2h',NULL,'checked out'),(20,1,'0101','2017-05-12 07:00:00','2017-05-20 07:00:00',NULL,'24h',NULL,'booked');
+INSERT INTO `book` VALUES (16,4,'0201','2017-05-10 07:00:00','2017-05-12 07:00:00',NULL,'day',NULL,'checked in'),(17,5,'0303','2017-05-10 07:00:00','2017-05-12 07:00:00',NULL,'day',NULL,'booked'),(18,5,'0204','2017-05-10 07:00:00','2017-05-08 07:00:00','2017-05-10 05:00:00','day',1000,'checked out'),(20,1,'0101','2017-05-12 07:00:00','2017-05-20 07:00:00',NULL,'hour',NULL,'booked'),(22,7,'0103','2017-05-12 10:00:00','2017-05-30 21:00:00',NULL,'hour',NULL,'booked');
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +97,7 @@ CREATE TABLE `room` (
 
 LOCK TABLES `room` WRITE;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES ('0102','double'),('0110','double'),('0301','double'),('0302','double'),('0303','double'),('0304','double'),('1010','double'),('fdsa','double'),('0210','double-vip'),('0305','double-vip'),('0401','double-vip'),('0402','double-vip'),('0403','double-vip'),('0404','double-vip'),('0101','single'),('0103','single'),('0104','single'),('0105','single'),('0106','single'),('0201','single-vip'),('0202','single-vip'),('0203','single-vip'),('0204','single-vip'),('0205','single-vip'),('0206','single-vip'),('1234','single-vip');
+INSERT INTO `room` VALUES ('0102','double'),('0110','double'),('0301','double'),('0302','double'),('0303','double'),('0304','double'),('1002','double'),('0210','double-vip'),('0305','double-vip'),('0401','double-vip'),('0402','double-vip'),('0403','double-vip'),('0404','double-vip'),('1010','double-vip'),('0101','single'),('0103','single'),('0104','single'),('0105','single'),('0106','single'),('1001','single'),('0201','single-vip'),('0202','single-vip'),('0203','single-vip'),('0204','single-vip'),('0205','single-vip'),('0206','single-vip'),('1003','single-vip');
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,10 +110,13 @@ DROP TABLE IF EXISTS `room_type`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `room_type` (
   `type` varchar(16) NOT NULL,
-  `2h_price` int(11) DEFAULT NULL,
-  `overnight_price` int(11) DEFAULT NULL,
-  `24h_price` int(11) DEFAULT NULL,
-  `unit_price` int(11) DEFAULT NULL,
+  `maxPeople` int(11) NOT NULL,
+  `numOfBeds` int(11) NOT NULL,
+  `food` enum('yes','no') NOT NULL,
+  `hourPrice` int(11) NOT NULL,
+  `dayPrice` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `image` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -124,7 +127,7 @@ CREATE TABLE `room_type` (
 
 LOCK TABLES `room_type` WRITE;
 /*!40000 ALTER TABLE `room_type` DISABLE KEYS */;
-INSERT INTO `room_type` VALUES ('double',200,500,700,100),('double-vip',300,600,900,150),('single',100,300,500,30),('single-vip',200,400,600,50);
+INSERT INTO `room_type` VALUES ('double',4,2,'no',120,400,40,NULL),('double-vip',4,2,'yes',170,450,50,NULL),('single',2,1,'no',80,300,20,NULL),('single-vip',2,1,'yes',100,350,30,NULL);
 /*!40000 ALTER TABLE `room_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +155,7 @@ CREATE TABLE `user_acc` (
 
 LOCK TABLES `user_acc` WRITE;
 /*!40000 ALTER TABLE `user_acc` DISABLE KEYS */;
-INSERT INTO `user_acc` VALUES (1,'user1','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Huu Hung','male','1995-09-09'),(4,'user4','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Van Hung','other','1996-09-09'),(5,'user5','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Huu User','other','1995-09-10'),(6,'user6','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Thi B','female','1995-10-10'),(7,'user7','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Van C','male','1995-09-09'),(8,'user8','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Thi D','male','1995-08-08'),(10,'user9','827ccb0eea8a706c4c34a16891f84e7b','Le Van Luyen','male','1995-09-09');
+INSERT INTO `user_acc` VALUES (1,'user1','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Huu Hung','male','1995-09-09'),(4,'user4','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Van Hung','other','1996-09-09'),(5,'user5','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Huu User','other','1995-09-10'),(6,'user6','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Thi Hanh','female','1995-03-24'),(7,'user7','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Van C','male','1995-09-09'),(8,'user8','827ccb0eea8a706c4c34a16891f84e7b','Nguyen Thi D','male','1995-08-08'),(10,'user9','827ccb0eea8a706c4c34a16891f84e7b','Le Van Luyen','male','1995-09-09');
 /*!40000 ALTER TABLE `user_acc` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -165,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-12 11:17:16
+-- Dump completed on 2017-05-13 10:37:25
