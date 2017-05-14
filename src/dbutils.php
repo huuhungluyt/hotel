@@ -22,7 +22,6 @@ function connectMySql(){
 	}
 	catch(PDOException $e)
 	            {
-		// echo "<script>console.log('[ERROR]\t" . $e->getMessage()."')</script>";
 	}finally{
 		return $conn;
 	}

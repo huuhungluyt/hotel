@@ -58,9 +58,6 @@
                             </select>
                         </div>
                     </div>
-                    <!--<div class="form-group col-sm-8 pull-right">
-                        <button type="button" id="btnSearch" name="btnSearch"class="btn btn-primary btn-md">Search</button>
-                    </div>-->
                 </form>
             </div>
         </div>
