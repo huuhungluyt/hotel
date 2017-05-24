@@ -25,12 +25,6 @@
     <link href="../bootstrap-3.3.7-dist/custom/css/carousel.css" rel="stylesheet">
   </head>
   <body>
-<script>
-    document.getElementById("url_home").classList.add("active");
-    document.getElementById("url_about").classList.remove("active");
-    document.getElementById("url_contact").classList.remove("active");
-    document.getElementById("url_book").classList.remove("active");
-</script>
  <div class="navbar-wrapper">
       <div class="container">
 

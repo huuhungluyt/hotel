@@ -110,7 +110,7 @@
                         <label for="room_id">Id room:</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="room_id" name="room_id"></hide>
+                        <input type="text" class="form-control" id="room_id" name="room_id">
                     </div>
                 </div>
                 <div class="form-group">
