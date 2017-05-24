@@ -4,7 +4,7 @@
 function connectMySql(){
 	$conn= null;
 	$servername =
-	"192.168.1.16";
+	"localhost:3306";
 	// "mysql.hostinger.vn";
 	$database=
 	"cn_web";
@@ -13,8 +13,8 @@ function connectMySql(){
 	// "u324139567_root";
 	"root";
 	$password =
-	// "";
-	"hanh_chu";
+	"";
+	// "hanh_chu";
 	// "huuhung_luyt";
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
