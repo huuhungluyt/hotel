@@ -4,7 +4,7 @@
 function connectMySql(){
 	$conn= null;
 	$servername =
-	"192.168.1.16";
+	"localhost:3306";
 	// "mysql.hostinger.vn";
 	$database=
 	"cn_web";

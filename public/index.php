@@ -2,21 +2,6 @@
 
 <div class="container">
     <div class="row">
-        <!--<div class="col-md-7">
-            <div class="row featurette">
-                <div class="col-md-pull-7">
-                    <img class="featurette-image img-responsive center-block img-rounded" src="../res/images/hinh6.jpg" alt="Exception image">
-                </div>
-                <div class="col-md-push-5">
-                    <h2 class="featurette-body">=== Exception Hotel ===</h2>
-                    <p class="lead">Imagine a country where the sea and the nature hold hands. This country is neither far nor ancient. It is the country of Unlimited Blue. Now imagine a hotel which takes you to the world of imagination with its mesmerizing architecture located within virgin nature. It is Exception Hotel.</p>
-                </div>
-                
-            </div>
-        </div>
-        <div class="col-mmd-5">
-
-        </div>-->
         <div class="row featurette">
             <div class="col-md-7">
             <h2 class="featurette-heading">Exception Hotel</h2>
