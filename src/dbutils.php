@@ -13,8 +13,8 @@ function connectMySql(){
 	// "u324139567_root";
 	"root";
 	$password =
-	// "";
-	 "hanh_chu";
+	"";
+	//  "hanh_chu";
 	// "huuhung_luyt";
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);

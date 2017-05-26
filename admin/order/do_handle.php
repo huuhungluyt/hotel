@@ -77,6 +77,8 @@
             //get money
             $money= $days*$dayPrice+(($hours>12)?($dayPrice):($dayPrice/2));
 
+            executeStatement("update book set endTime=NOW(), fee=$money, state='checked out' where id=$id");
+
             echo $roomId.",".$roomType.",".$beginTime.",".$now.",".$orderType.",".$hourPrice.",".$dayPrice.",".$unitPrice.",".$money.",".$hours.",".$days;
         }else{
             $hours= floor($diff/ (60*60));
